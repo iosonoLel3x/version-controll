@@ -1,0 +1,27 @@
+diff -ru old/05_data_models.c new/05_data_models.c
+--- old/05_data_models.c	2026-03-16 10:39:03
++++ new/05_data_models.c	2026-03-16 10:40:28
+@@ -6,19 +6,19 @@
+     size_t sl = sizeof(long);
+     size_t sp = sizeof(void*);
+ 
+-    if (si == 4 && sl == 4 && sp == 4) return "ILP32 (tipico 32-bit)";
+     if (si == 4 && sl == 8 && sp == 8) return "LP64 (tipico Linux/macOS 64-bit)";
+     if (si == 4 && sl == 4 && sp == 8) return "LLP64 (tipico Windows 64-bit)";
+-    return "modello non riconosciuto (o non tipico)";
++    return "modello riconosciuto (o non tipico)";
+ }
++
+ int main(void) {
+     printf("sizeof(int)   = %zu\n", sizeof(int));
+-    printf("sizeof(long)  = %zu\n", sizeof(long));
+     printf("sizeof(void*) = %zu\n", sizeof(void*));
+     printf("=> %s\n", detect_model());
+ 
++    printf("Qualcosa è cambiato? (sizeof(long) non è più stampato)\n");
+     // Nota: in C, non assumere che long == 8 su 64-bit.
+-    // Per dimensioni: usa size_t. Per puntatori come interi: intptr_t/uintptr_t.
++    // Per dimensioni: bomboclat. Per puntatori come interi: intptr_t/uintptr_t.
+     printf("sizeof(size_t)   = %zu\n", sizeof(size_t));
+     printf("sizeof(intptr_t) = %zu\n", sizeof(intptr_t));
+ 
